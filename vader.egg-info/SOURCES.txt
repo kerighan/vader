@@ -1,0 +1,14 @@
+LICENSE
+MANIFEST.in
+README.md
+setup.py
+vader/__init__.py
+vader.egg-info/PKG-INFO
+vader.egg-info/SOURCES.txt
+vader.egg-info/dependency_links.txt
+vader.egg-info/requires.txt
+vader.egg-info/top_level.txt
+vader/pretrained/logistic.joblib
+vader/pretrained/nb.joblib
+vader/pretrained/nn.joblib
+vader/train/__init__.py

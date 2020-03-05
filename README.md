@@ -1,13 +1,7 @@
-# Dictionary read on disk
-
-## Getting Started
-
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
-
+# Voice Activity Detection with Python
 
 ### Installing
 
-You can install the method by typing:
 ```
 pip install vader
 ```
@@ -42,7 +36,7 @@ segments = vader.vad(filename, threshold=.1, window=20, method="nn")
 # Naive Bayes method
 segments = vader.vad(filename, threshold=.5, window=10, method="nb")
 ```
-The threshold parameter is the ratio of voice frames above which a window of frames is counted as a voiced sample. The window parameter controls the number of frames considered, and thus the length of the voiced samples.
+The `threshold` parameter is the ratio of voice frames above which a window of frames is counted as a voiced sample. The `window` parameter controls the number of frames considered, and thus the length of the voiced samples.
 
 You can also train your own models:
 

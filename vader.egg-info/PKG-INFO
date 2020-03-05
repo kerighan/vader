@@ -1,0 +1,75 @@
+Metadata-Version: 2.1
+Name: vader
+Version: 0.0.1
+Summary: Fast voice activity detection with Python
+Home-page: https://github.com/kerighan/vader
+Author: Maixent Chenebaux
+Author-email: max.chbx@gmail.com
+License: UNKNOWN
+Description: # Dictionary read on disk
+        
+        ## Getting Started
+        
+        These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+        
+        
+        ### Installing
+        
+        You can install the method by typing:
+        ```
+        pip install vader
+        ```
+        
+        ### Basic usage
+        
+        ```python
+        import vader
+        
+        # use your own mono, preferably 16kHz .wav file
+        filename = "audio.wav"
+        
+        # returns segments of vocal activity (unit: seconds)
+        # note: it uses a pre-trained logistic regression by default
+        segments = vader.vad(filename)
+        
+        # where to dump audio files
+        out_folder = "segments"
+        # write segments into .wav files
+        vader.vad_to_files(segments, filename, out_folder)
+        ```
+        
+        You can also use different pre-trained models by specifying the method parameter
+        
+        ```python
+        # logistic method
+        segments = vader.vad(filename, threshold=.1, window=20, method="logistic")
+        
+        # multi-layer perceptron method
+        segments = vader.vad(filename, threshold=.1, window=20, method="nn")
+        
+        # Naive Bayes method
+        segments = vader.vad(filename, threshold=.5, window=10, method="nb")
+        ```
+        The threshold parameter is the ratio of voice frames above which a window of frames is counted as a voiced sample. The window parameter controls the number of frames considered, and thus the length of the voiced samples.
+        
+        You can also train your own models:
+        
+        ```python
+        import vader
+        model = vader.train.logistic_regression(mfccs, activities)
+        model = vader.train.random_forest_classifier(mfccs, activities)
+        model = vader.train.NN(mfccs, activities)
+        model = vader.train.NB(mfccs, activities)
+        ```
+        The variable `mfccs` is a list of varying length mfcc features (num_samples, *varying_lengths*, 13), while `activities` is a list of binary vectors whose lengths match those of the mfcc features (num_samples, *varying_lengths*), equal to 1 when a frame is voiced, and 0 otherwise.
+        
+        ## Authors
+        
+        Maixent Chenebaux
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.5
+Description-Content-Type: text/markdown
