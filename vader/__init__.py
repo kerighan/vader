@@ -65,7 +65,7 @@ def rollavg(y, n=10):
 def vad(
     filename,
     window=10,
-    threshold=.4,
+    threshold=.3,
     min_duration=.5,
     method="nn",
     raw=False

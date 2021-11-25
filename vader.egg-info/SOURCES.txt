@@ -11,4 +11,5 @@ vader.egg-info/top_level.txt
 vader/pretrained/logistic.joblib
 vader/pretrained/nb.joblib
 vader/pretrained/nn.joblib
+vader/pretrained/rf.joblib
 vader/train/__init__.py
