@@ -1,9 +1,10 @@
-import numpy as np
-import scipy.io.wavfile as wavfile
-from sonopy import power_spec, mel_spec, mfcc_spec, filterbanks
-import vader.train
 import os
 
+import numpy as np
+import scipy.io.wavfile as wavfile
+from sonopy import filterbanks, mel_spec, mfcc_spec, power_spec
+
+import vader.train
 
 path = os.path.dirname(__file__)
 
@@ -63,8 +64,8 @@ def rollavg(y, n=10):
 
 def vad(
     filename,
-    window=20,
-    threshold=.1,
+    window=10,
+    threshold=.4,
     min_duration=.5,
     method="nn",
     raw=False
@@ -75,7 +76,7 @@ def vad(
         model = load(model_fn)
     else:
         raise NameError(f"Unknown method: {method}")
-    
+
     # compute features
     mfccs, duration = mfcc_from_file(filename)
 
@@ -107,7 +108,7 @@ def vad(
                 chain[-1][1] = duration * last_index / N
                 chain.append([index_time, None])
                 last_index = index
-    
+
     # remove short audio samples
     chain_fix = []
     for start, end in chain:

@@ -15,7 +15,7 @@ import vader
 filename = "audio.wav"
 
 # returns segments of vocal activity (unit: seconds)
-# note: it uses a pre-trained logistic regression by default
+# note: it uses a pre-trained NN by default
 segments = vader.vad(filename)
 
 # where to dump audio files
@@ -35,6 +35,9 @@ segments = vader.vad(filename, threshold=.1, window=20, method="nn")
 
 # Naive Bayes method
 segments = vader.vad(filename, threshold=.5, window=10, method="nb")
+
+# Random Forest method
+segments = vader.vad(filename, threshold=.5, window=10, method="rf")
 ```
 The `threshold` parameter is the ratio of voice frames above which a window of frames is counted as a voiced sample. The `window` parameter controls the number of frames considered, and thus the length of the voiced samples.
 

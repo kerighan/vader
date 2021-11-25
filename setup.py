@@ -5,7 +5,7 @@ with open("README.md", "r") as f:
 
 setuptools.setup(
     name="vader",
-    version="0.0.1",
+    version="0.0.3",
     author="Maixent Chenebaux",
     author_email="max.chbx@gmail.com",
     description="Fast voice activity detection with Python",
